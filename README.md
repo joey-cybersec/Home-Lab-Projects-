@@ -2,7 +2,7 @@
 Cyber security exercises 
 
 
-Lab 1 — Hands-On Internal Network & Firewall Setup
+Lab 1 — Hands-On Internal Network & Firewall Setup Part 1
 
 ## Step 1: Download pfSense ISO
 
