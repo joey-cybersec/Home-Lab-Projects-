@@ -100,3 +100,23 @@ These steps establish the **foundation for a secure internal network** that can 
 Evidence :
 <img width="959" height="522" alt="image" src="https://github.com/user-attachments/assets/891389a5-6c81-4d1a-b823-43beecca4a6c" />
 
+
+
+Lab 1 — Hands-On Internal Network & Firewall Setup Part 2 
+
+Step 7: Creating Internal Windows VM
+What I did:  
+Installed and configured a Windows 10 virtual machine to act as an internal client behind the pfSense firewall. Set the network adapter to “Internal Network” (LAN) to simulate a protected endpoint within a segmented network.
+
+Why it matters:  
+This VM represents a typical employee workstation in a corporate environment. It allows for realistic testing of DHCP, firewall rules, and internal traffic flow. Connecting it to pfSense enables controlled access, monitoring, and security enforcement.
+
+Skills learned:
+
+Virtual machine provisioning
+
+Network adapter configuration in VirtualBox
+
+DHCP troubleshooting and IP verification (ipconfig)
+
+Real-world segmentation and endpoint simulation
