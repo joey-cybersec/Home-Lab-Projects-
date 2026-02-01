@@ -2,7 +2,7 @@
 Cyber security exercises 
 
 
-Lab 1 — Hands-On Internal Network & Firewall Setup Part 1
+Lab 1 — Hands-On Internal Network & Firewall Setup 
 
 ## Step 1: Download pfSense ISO
 
@@ -106,7 +106,6 @@ Evidence :
 
 
 
-**Lab 1 — Hands-On Internal Network & Firewall Setup Part 2** 
 
 ## Step 7: Creating Internal Windows VM
 
@@ -123,5 +122,6 @@ This VM represents a typical employee workstation in a corporate environment. It
 - Real-world segmentation and endpoint simulation
 
 
+<img width="947" height="533" alt="image" src="https://github.com/user-attachments/assets/61bf8513-d232-4f79-8716-912fa2fbd442" />
 
 
