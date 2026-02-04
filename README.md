@@ -128,10 +128,7 @@ This VM represents a typical employee workstation in a corporate environment. It
 
 # 🧪 Lab 2: Windows Logging & Attack Detection (Blue Team)
 
-## 🎯 Goal
-Learn how attacks appear in Windows security logs and how SOC analysts detect suspicious authentication activity.
 
----
 
 ## Step 1: Set Up the Windows Victim Machine
 
