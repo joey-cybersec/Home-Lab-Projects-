@@ -125,3 +125,71 @@ This VM represents a typical employee workstation in a corporate environment. It
 <img width="947" height="533" alt="image" src="https://github.com/user-attachments/assets/61bf8513-d232-4f79-8716-912fa2fbd442" />
 
 
+
+# 🧪 Lab 2: Windows Logging & Attack Detection (Blue Team)
+
+## 🎯 Goal
+Learn how attacks appear in Windows security logs and how SOC analysts detect suspicious authentication activity.
+
+---
+
+## Step 1: Set Up the Windows Victim Machine
+
+### What I did:
+Created a Windows 10 virtual machine to act as the victim system. This machine represents a typical corporate workstation in an enterprise environment.
+
+### Why it matters:
+Windows endpoints are common targets for attackers. Understanding how Windows records authentication events is critical for effective detection and incident response.
+
+### Skills learned:
+- Windows virtual machine setup  
+- Enterprise endpoint awareness  
+- Blue team fundamentals  
+
+---
+
+## Step 2: Enable Windows Login Auditing
+
+### What I did:
+Enabled auditing for successful and failed logon events using **Local Security Policy (secpol.msc)** and applied the policy using `gpupdate /force`.
+
+### Why it matters:
+Without logging enabled, attacks cannot be detected. Security logging is the foundation of monitoring, alerting, and forensic investigations in SOC environments.
+
+### Skills learned:
+- Windows audit policy configuration  
+- Security logging fundamentals  
+- Detection preparation  
+
+---
+
+## Step 3: Create a Standard User Account
+
+### What I did:
+Created a non-administrator user account to simulate a normal employee account that could be targeted during an attack.
+
+### Why it matters:
+Attackers often target standard user accounts. Monitoring failed authentication attempts against these accounts helps detect brute-force and credential-stuffing attacks.
+
+### Skills learned:
+- Windows user management  
+- Least privilege principles  
+- Understanding attacker behavior  
+
+---
+
+## Step 4: Simulate an Attack from Linux
+
+### What I did:
+Used a Linux virtual machine to simulate multiple failed login attempts against the Windows system using incorrect credentials over network-based authentication methods such as SMB or RDP.
+
+### Why it matters:
+Simulating attacks provides hands-on experience with how malicious activity appears in logs. This mirrors how SOC analysts validate detections and investigate incidents.
+
+### Skills learned:
+- Attack simulation techniques  
+- Brute-force authentication behavior  
+- Blue team vs attacker perspective  
+
+---
+
