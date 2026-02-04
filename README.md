@@ -126,7 +126,7 @@ This VM represents a typical employee workstation in a corporate environment. It
 
 
 
-# 🧪 Lab 2: Windows Logging & Attack Detection (Blue Team)
+#  Lab 2: Windows Logging & Attack Detection (Blue Team)
 
 
 
