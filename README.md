@@ -174,19 +174,22 @@ Attackers often target standard user accounts. Monitoring failed authentication 
 - Understanding attacker behavior  
 
 ---
-
-## Step 4: Simulate an Attack from Linux
+## Step 4: Simulate an Attack (Local Failed Logins)
 
 ### What I did:
-Used a Linux virtual machine to simulate multiple failed login attempts against the Windows system using incorrect credentials over network-based authentication methods such as SMB or RDP.
+Instead of using a Linux virtual machine, I simulated an attack directly on the Windows system by intentionally entering incorrect passwords on the lock screen. I locked the Windows VM and attempted to log in multiple times using the wrong password for the standard user account. Each failed attempt generated a **4625 Failed Logon** event in the Security log.
 
 ### Why it matters:
-Simulating attacks provides hands-on experience with how malicious activity appears in logs. This mirrors how SOC analysts validate detections and investigate incidents.
+Even without a second machine, repeatedly entering incorrect credentials still mimics real attacker behavior. Brute‑force attempts, password guessing, and unauthorized access often appear exactly like this in enterprise environments. This method still produces the same Windows log artifacts that SOC analysts investigate when detecting suspicious authentication activity.
 
 ### Skills learned:
-- Attack simulation techniques  
-- Brute-force authentication behavior  
-- Blue team vs attacker perspective  
+- Understanding how Windows records failed authentication attempts  
+- Recognizing brute‑force patterns without needing external tools  
+- Simulating attacker behavior in a simplified, controlled environment  
+- Preparing for log analysis and SOC-style investigations  
+
+
+
 
 ---
 
