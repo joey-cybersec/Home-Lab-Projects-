@@ -237,3 +237,5 @@ This step builds the analytical skills needed to investigate real incidents and 
 - Identifying suspicious authentication patterns  
 - Building investigative thinking used in SOC environments  
 
+<img width="198" height="14" alt="image" src="https://github.com/user-attachments/assets/8d3b5f56-97a6-429f-adaa-12093e75189e" />
+
