@@ -214,4 +214,26 @@ By reviewing these events directly in Event Viewer, I learned how Windows record
 
 <img width="784" height="526" alt="image" src="https://github.com/user-attachments/assets/ccd76797-7e9c-40fe-b275-d94415c97bde" />
 
+## Step 6: Analyze the Failed Logon Events
+
+### What I did:
+Reviewed the details inside several **Event ID 4625** entries in the Windows Security log. I examined fields such as the targeted username, logon type, failure reason, timestamp, and other metadata. This helped me understand exactly how Windows records failed authentication attempts and what information is available to defenders during an investigation.
+
+### Why it matters:
+Simply seeing a 4625 event is not enough — SOC analysts must understand the context behind each field.  
+By analyzing these events, I learned how to identify:
+
+- Whether the login was local or remote  
+- Which account was targeted  
+- How many times the attacker attempted access  
+- The reason the login failed (e.g., bad password)  
+- Patterns that indicate brute‑force or password‑guessing attacks  
+
+This step builds the analytical skills needed to investigate real incidents and distinguish normal user mistakes from malicious activity.
+
+### Skills learned:
+- Reading and interpreting Windows Security event fields  
+- Understanding logon types and failure reasons  
+- Identifying suspicious authentication patterns  
+- Building investigative thinking used in SOC environments  
 
