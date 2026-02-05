@@ -190,3 +190,25 @@ Simulating attacks provides hands-on experience with how malicious activity appe
 
 ---
 
+## Step 5: Review Windows Security Logs (Event Viewer)
+
+### What I did:
+Opened **Event Viewer** on the Windows virtual machine and navigated to:
+
+I then reviewed the Security log and located multiple **Event ID 4625** entries, which represent failed logon attempts. These events were generated after intentionally entering incorrect passwords on the Windows lock screen. Each 4625 event included details such as the username targeted, the logon type, the timestamp, and the failure reason.
+
+### Why it matters:
+Event ID 4625 is one of the most important indicators of suspicious authentication activity.  
+SOC analysts rely on these logs to detect brute‑force attempts, password‑guessing attacks, and unauthorized access.  
+By reviewing these events directly in Event Viewer, I learned how Windows records failed logins and how to interpret the information attackers leave behind. This step connects the simulated attack to the real evidence stored in system logs.
+
+### Skills learned:
+- Navigating Windows Event Viewer  
+- Identifying authentication-related Event IDs  
+- Understanding how failed logons are recorded  
+- Recognizing brute‑force patterns in security logs  
+- Building foundational SOC investigation skills  
+
+<img width="784" height="526" alt="image" src="https://github.com/user-attachments/assets/ccd76797-7e9c-40fe-b275-d94415c97bde" />
+
+
