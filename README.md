@@ -250,10 +250,10 @@ This version fits perfectly into your README and matches the real structure of y
 
 ---
 
-# ## 🔧 Lab 3 — Preparing the Wazuh SIEM Server  
+# ##  Lab 3 — Preparing the Wazuh SIEM Server  
 ### **Fixing Sudo, Root Access & System Recovery Issues Before Starting the Lab**
 
-## 📌 **Overview**
+##  **Overview**
 Before beginning the official tasks in **Lab 3**, I first needed to install and configure all required virtual machines for the SIEM environment:
 
 - **pfSense Firewall**  
