@@ -245,7 +245,7 @@ You can paste this directly into your README.md.
 
 ---
 
-# ## 🔧 Lab 3 — Preparing the Wazuh SIEM Server  
+# ##  Lab 3 Issue— Preparing the Wazuh SIEM Server  
 ### **Fixing Sudo, Root Access & System Recovery Issues**
 
 ##  **Overview**
@@ -366,17 +366,6 @@ The password prompt worked, confirming:
 The system is now fully repaired and ready for the Wazuh installation.
 
 ---
-
-# **How This Fits Into Lab 3**
-Lab 3 requires preparing the Ubuntu server for Wazuh SIEM deployment.  
-Fixing sudo and root access was a critical prerequisite because Wazuh installation requires:
-
-- Running privileged scripts  
-- Installing dependencies  
-- Editing system configuration files  
-- Restarting services (OpenSearch, Filebeat, Wazuh Manager)  
-
-
 
 ---
 
