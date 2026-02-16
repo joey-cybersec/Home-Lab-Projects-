@@ -253,7 +253,7 @@ Lab 3 focuses on preparing the Ubuntu server that will host the Wazuh SIEM platf
 
 During setup, the Ubuntu VM was missing the `sudo` package and the root account had no password configured. This caused privilege escalation failures (`sudo` and `su -` both failed), blocking the Wazuh installation.
 
-This section documents how the issue was diagnosed and resolved using Ubuntu’s Recovery Mode.
+This section documents how ive address the issue and diagnosed and resolved using Ubuntu’s Recovery Mode.
 
 ---
 
@@ -318,7 +318,7 @@ A new root password was created successfully.
 
 ---
 
-## 🪜 **Step 4 — Install sudo**
+##  **Step 4 — Install sudo**
 The system was missing the `sudo` package entirely. It was installed using the root shell:
 
 ```bash
@@ -376,16 +376,7 @@ Fixing sudo and root access was a critical prerequisite because Wazuh installati
 - Editing system configuration files  
 - Restarting services (OpenSearch, Filebeat, Wazuh Manager)  
 
-This troubleshooting process demonstrates real-world skills in:
 
-- Linux system recovery  
-- Privilege escalation repair  
-- User and group management  
-- Package installation without sudo  
-- Diagnosing authentication failures  
-- Preparing a secure environment for SIEM deployment  
-
-These skills are essential for SOC analysts, sysadmins, and cybersecurity engineers.
 
 ---
 
