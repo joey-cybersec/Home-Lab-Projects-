@@ -239,3 +239,162 @@ This step builds the analytical skills needed to investigate real incidents and 
 
 <img width="198" height="14" alt="image" src="https://github.com/user-attachments/assets/8d3b5f56-97a6-429f-adaa-12093e75189e" />
 
+Absolutely, Joey — here is your full write‑up **cleanly formatted in GitHub‑ready Markdown**, with headings, code blocks, and a professional structure that fits perfectly into your Lab 3 documentation.
+
+You can paste this directly into your README.md.
+
+---
+
+# ## 🔧 Lab 3 — Preparing the Wazuh SIEM Server  
+### **Fixing Sudo, Root Access & System Recovery Issues**
+
+##  **Overview**
+Lab 3 focuses on preparing the Ubuntu server that will host the Wazuh SIEM platform. Before installing Wazuh, the server must support administrative operations such as installing packages, modifying system files, and managing services.
+
+During setup, the Ubuntu VM was missing the `sudo` package and the root account had no password configured. This caused privilege escalation failures (`sudo` and `su -` both failed), blocking the Wazuh installation.
+
+This section documents how the issue was diagnosed and resolved using Ubuntu’s Recovery Mode.
+
+---
+
+## **Problem Summary**
+When attempting to run the Wazuh installer, the following issues were discovered:
+
+- `sudo` was not installed  
+- `su -` failed with **Authentication failure**  
+- The root account had **no password**  
+- The user account (`joey`) was **not in the sudo group**  
+- The system could not install or modify anything  
+- Wazuh installer could not run  
+
+These issues made it impossible to continue with the SIEM deployment.
+
+---
+
+##  **Step 1 — Boot Into Recovery Mode**
+To regain administrative access, the VM was rebooted into Ubuntu’s Recovery Mode.
+
+1. Restart the VM  
+2. Open the GRUB menu (Shift/Esc during boot)  
+3. Select:
+
+   ```
+   Advanced options for Ubuntu
+   ```
+
+4. Choose the entry ending with:
+
+   ```
+   (recovery mode)
+   ```
+
+5. From the Recovery Menu, select:
+
+   ```
+   root – Drop to root shell prompt
+   ```
+
+This provides root access without requiring a password.
+
+---
+
+##  **Step 2 — Remount Filesystem as Read/Write**
+Recovery mode mounts the system read‑only. To make changes:
+
+```bash
+mount -o remount,rw /
+```
+
+---
+
+##  **Step 3 — Set a Root Password**
+The root account had no password, which is why `su -` failed earlier.
+
+```bash
+passwd
+```
+
+A new root password was created successfully.
+
+---
+
+## 🪜 **Step 4 — Install sudo**
+The system was missing the `sudo` package entirely. It was installed using the root shell:
+
+```bash
+apt update
+apt install sudo -y
+```
+
+---
+
+##  **Step 5 — Add User “joey” to the sudo Group**
+To allow the normal user to run administrative commands:
+
+```bash
+usermod -aG sudo joey
+```
+
+---
+
+##  **Step 6 — Reset Joey’s User Password**
+After rebooting, `sudo` still failed because the user password was incorrect.  
+The password was reset from the root shell:
+
+```bash
+su -
+passwd joey
+```
+
+Password updated successfully.
+
+---
+
+##  **Step 7 — Verify sudo Access**
+Logged back in as **joey** and tested:
+
+```bash
+sudo ls
+```
+
+The password prompt worked, confirming:
+
+- sudo is installed  
+- user is in the sudo group  
+- authentication works correctly  
+
+The system is now fully repaired and ready for the Wazuh installation.
+
+---
+
+# **How This Fits Into Lab 3**
+Lab 3 requires preparing the Ubuntu server for Wazuh SIEM deployment.  
+Fixing sudo and root access was a critical prerequisite because Wazuh installation requires:
+
+- Running privileged scripts  
+- Installing dependencies  
+- Editing system configuration files  
+- Restarting services (OpenSearch, Filebeat, Wazuh Manager)  
+
+This troubleshooting process demonstrates real-world skills in:
+
+- Linux system recovery  
+- Privilege escalation repair  
+- User and group management  
+- Package installation without sudo  
+- Diagnosing authentication failures  
+- Preparing a secure environment for SIEM deployment  
+
+These skills are essential for SOC analysts, sysadmins, and cybersecurity engineers.
+
+---
+
+##  **Skills Learned**
+- Using Ubuntu Recovery Mode for system repair  
+- Resetting root and user passwords  
+- Installing missing system packages  
+- Managing sudo permissions  
+- Understanding Linux boot and recovery workflows  
+- Preparing a server for SIEM deployment  
+
+
