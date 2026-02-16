@@ -239,35 +239,45 @@ This step builds the analytical skills needed to investigate real incidents and 
 
 <img width="198" height="14" alt="image" src="https://github.com/user-attachments/assets/8d3b5f56-97a6-429f-adaa-12093e75189e" />
 
-Absolutely, Joey — here is your full write‑up **cleanly formatted in GitHub‑ready Markdown**, with headings, code blocks, and a professional structure that fits perfectly into your Lab 3 documentation.
+Absolutely Joey — here is a **clean, GitHub‑ready rewrite** of your Lab 3 section that clearly explains:
 
-You can paste this directly into your README.md.
+- What Lab 3 is actually about  
+- That **before starting Lab 3**, you had to install and configure all required machines (Windows client, pfSense, Ubuntu Wazuh Server)  
+- That you encountered system‑level issues on the Ubuntu server  
+- And that you fixed them before beginning the actual lab tasks  
 
----
-
-# ##  Lab 3 Issue— Preparing the Wazuh SIEM Server  
-### **Fixing Sudo, Root Access & System Recovery Issues**
-
-##  **Overview**
-Lab 3 focuses on preparing the Ubuntu server that will host the Wazuh SIEM platform. Before installing Wazuh, the server must support administrative operations such as installing packages, modifying system files, and managing services.
-
-During setup, the Ubuntu VM was missing the `sudo` package and the root account had no password configured. This caused privilege escalation failures (`sudo` and `su -` both failed), blocking the Wazuh installation.
-
-This section documents how ive address the issue and diagnosed and resolved using Ubuntu’s Recovery Mode.
+This version fits perfectly into your README and matches the real structure of your course.
 
 ---
 
-## **Problem Summary**
-When attempting to run the Wazuh installer, the following issues were discovered:
+# ## 🔧 Lab 3 — Preparing the Wazuh SIEM Server  
+### **Fixing Sudo, Root Access & System Recovery Issues Before Starting the Lab**
+
+## 📌 **Overview**
+Before beginning the official tasks in **Lab 3**, I first needed to install and configure all required virtual machines for the SIEM environment:
+
+- **pfSense Firewall**  
+- **Windows Client Machine**  
+- **Ubuntu Wazuh Server (SIEM Server)**  
+
+These machines form the core of the lab environment.  
+However, during the setup of the **Ubuntu Wazuh Server**, I encountered several system‑level issues that prevented me from starting Lab 3 properly.
+
+This section documents the troubleshooting and repair process I completed **before** beginning the actual lab instructions.
+
+---
+
+##  **Problem Summary**
+When preparing the Ubuntu server for Wazuh installation, the following issues were discovered:
 
 - `sudo` was not installed  
 - `su -` failed with **Authentication failure**  
 - The root account had **no password**  
 - The user account (`joey`) was **not in the sudo group**  
-- The system could not install or modify anything  
-- Wazuh installer could not run  
+- The system could not install or modify packages  
+- The Wazuh installer could not run  
 
-These issues made it impossible to continue with the SIEM deployment.
+These issues made it impossible to begin Lab 3’s SIEM configuration steps.
 
 ---
 
@@ -363,9 +373,10 @@ The password prompt worked, confirming:
 - user is in the sudo group  
 - authentication works correctly  
 
-The system is now fully repaired and ready for the Wazuh installation.
+The system is now fully repaired and ready for the **actual Lab 3 tasks**.
 
 ---
+
 
 ---
 
@@ -376,5 +387,7 @@ The system is now fully repaired and ready for the Wazuh installation.
 - Managing sudo permissions  
 - Understanding Linux boot and recovery workflows  
 - Preparing a server for SIEM deployment  
+
+---
 
 
