@@ -391,141 +391,167 @@ The system is now fully repaired and ready for the **actual Lab 3 tasks**.
 ---
 
 ---
+Absolutely, Joey — I can take what you already have and elevate it into a **clean, professional, deeply explained GitHub Part 1** that shows:
 
-#  Lab 3 – Part 1: Wazuh All-In-One Installation
+- what you did  
+- the exact commands you wrote  
+- what went wrong  
+- why it went wrong  
+- how you fixed it  
+- what you learned from each issue  
 
-## Objective
-Install the **Wazuh All-In-One SIEM stack** on an Ubuntu Server VM and troubleshoot common installation issues.
-
-This deployment includes:
-
-- Wazuh Indexer
-- Wazuh Manager
-- Filebeat
-- Wazuh Dashboard
-
----
-
-#  Lab Environment
-
-| Component | Details |
-|------------|----------|
-| Hypervisor | VirtualBox |
-| OS | Ubuntu Server |
-| SIEM Version | Wazuh 4.7 |
-| Deployment Mode | All-In-One |
+This version reads like something a real junior SOC analyst or cybersecurity student would proudly put on GitHub.  
+Here it is — polished, structured, and detailed.
 
 ---
 
-#  Step 1 – Download Wazuh Installer
+# **Lab 3 – Part 1: Wazuh All‑In‑One Installation**  
+## **Overview**
+Part 1 of Lab 3 involved installing the Wazuh All‑In‑One SIEM stack on my Ubuntu Server VM.  
+This required downloading the installer, resolving multiple command‑execution issues, and running the installation with the correct flags.
 
-Download the official installer script:
+This documentation explains **exactly what I did**, the **problems I encountered**, the **commands I used**, and **what I learned** from each step.
+
+---
+
+# **Step‑by‑Step Process, Issues, Fixes & Lessons Learned**
+
+---
+
+## **1. Attempting to Download the Wazuh Installer**
+### **What I Tried**
+I attempted to download the Wazuh installer using curl:
+
+```bash
+curl -v -0 https://packages.wazuh.com/4.7/wazuh-install.sh
+```
+
+### **Issue**
+The command didn’t work because I accidentally used:
+
+- `-0` (zero) ❌  
+instead of  
+- `-O` (capital O) ✔  
+
+Curl treated `-0` as an invalid flag, so the file never downloaded.
+
+### **Fix**
+I corrected the command:
 
 ```bash
 curl -v -O https://packages.wazuh.com/4.7/wazuh-install.sh
 ```
 
-###  Important
-The correct flag is:
+This successfully downloaded the script.
 
-- `-O` → Saves file with original name  
-- `-0` (zero) → ❌ Incorrect flag  
-
-Using the wrong flag prevents the script from downloading properly.
+### **What I Learned**
+- Curl flags are case‑sensitive.  
+- `-O` saves the file with its original name.  
+- A single character typo can break an entire workflow.  
+- Always re‑read your command before assuming the tool is broken.
 
 ---
 
-#  Step 2 – Run Installer (All-In-One Mode)
+## **2. Shell Was Not Executing Commands Properly**
+### **What Happened**
+Before fixing the curl typo, my terminal kept re-running a script every time I pressed Enter.  
+Commands like `curl`, `ls`, and even simple `echo` weren’t executing.
 
-By default, running the script without flags only shows the help menu:
+### **Diagnosis**
+I checked running processes:
+
+```bash
+ps -f
+```
+
+This confirmed no script was running — meaning the shell had finally returned to normal.
+
+### **Fix**
+Once the shell was behaving normally, commands executed correctly again.
+
+### **What I Learned**
+- When the terminal behaves strangely, check the running processes.  
+- A stuck shell can mimic “broken commands.”  
+- `ps -f` is a quick way to confirm whether a script is hijacking your session.
+
+---
+
+## **3. Running the Installer Without Flags**
+### **What I Tried**
+I ran the installer normally:
 
 ```bash
 sudo bash wazuh-install.sh
 ```
 
-Newer versions of Wazuh require explicitly defining the installation mode.
+### **Issue**
+The script only displayed the help menu.  
+Newer Wazuh versions require you to explicitly choose an installation mode.
 
-### ✅ Correct Command:
+### **Fix**
+I selected the All‑In‑One mode:
 
 ```bash
 sudo bash wazuh-install.sh -a
 ```
 
-Flag explanation:
-
-- `-a` → All-In-One installation
+### **What I Learned**
+- Wazuh no longer defaults to AIO mode.  
+- The help menu isn’t an error — it’s telling you what it needs.  
+- Always read installer output carefully before assuming something is wrong.
 
 ---
 
-#  Issue: Ubuntu Version Compatibility Error
-
-The installer returned:
+## **4. Ubuntu Version Not in Recommended List**
+### **What Happened**
+The installer stopped with:
 
 ```
 ERROR: The current system does not match the recommended list.
 Use -i|--ignore-check to skip this check.
 ```
 
-This occurred because the VM was running a newer Ubuntu version not yet listed as officially recommended.
+My VM was running a newer Ubuntu version than Wazuh officially supports.
 
-### Resolution
-
-Bypass the compatibility check:
-
-```bash
-sudo bash wazuh-install.sh -a -i
-```
-
-Flag explanation:
-
-- `-i` → Ignore OS compatibility check
-
----
-
-#  Final Working Installation Command
+### **Fix**
+I combined both required flags:
 
 ```bash
 sudo bash wazuh-install.sh -a -i
 ```
 
-This successfully deployed:
+This bypassed the OS check and allowed the installation to continue.
 
-- Wazuh Indexer
-- Wazuh Manager
-- Filebeat
-- Wazuh Dashboard
-
----
-
-# Successful Installation Output
-
-After completion, the installer displayed:
-
-```
-You can access the web interface at:
-https://<wazuh-dashboard-ip>:443
-
-User: admin
-Password: <generated-password>
-```
-
-### ✅ Services Started Successfully
-
-- Indexer cluster initialized
-- Wazuh Manager running
-- Filebeat running
-- Wazuh Dashboard accessible
+### **What I Learned**
+- Compatibility warnings aren’t always blockers — especially in lab environments.  
+- The installer tells you exactly how to bypass checks safely.  
+- Combining flags is often necessary for advanced installers.
 
 ---
 
-#  Skills Demonstrated
+# **Final Working Command**
 
-- Linux troubleshooting
-- Process inspection using `ps`
-- Understanding CLI flags and script parameters
-- Debugging installer errors
-- Reading and interpreting deployment logs
-- Safe bypassing of compatibility checks
+```bash
+sudo bash wazuh-install.sh -a -i
+```
+
+This triggered the full installation of:
+
+- Wazuh Indexer  
+- Wazuh Manager  
+- Filebeat  
+- Wazuh Dashboard  
+
+---
+
+
+# **Skills Learned in Part 1**
+- Troubleshooting shell execution issues  
+- Understanding curl flags and download behaviour  
+- Reading installer help menus and interpreting errors  
+- Using flags to control installer behaviour  
+- Bypassing compatibility checks safely  
+- Understanding the Wazuh installation workflow  
 
 ---
 
