@@ -389,11 +389,6 @@ The system is now fully repaired and ready for the **actual Lab 3 tasks**.
 - Preparing a server for SIEM deployment  
 
 ---
-Absolutely — and now that the installer has fully completed (your screenshot shows the indexer, manager, Filebeat, and dashboard all installed successfully), we can update your GitHub documentation to reflect the **entire Part 1**, including the final installation summary.
-
-Here is an upgraded, polished, GitHub‑ready **Part 1 of Lab 3**, now including the successful installation output and the final dashboard credentials.
-
-You can paste this directly into your README.
 
 ---
 
@@ -442,8 +437,8 @@ curl -v -0 https://packages.wazuh.com/4.7/wazuh-install.sh
 
 The issue was the flag:
 
-- `-0` (zero) ❌  
-- `-O` (capital O) ✔  
+- `-0` (zero) 
+- `-O` (capital O) 
 
 **Correct command:**
 
