@@ -392,128 +392,114 @@ The system is now fully repaired and ready for the **actual Lab 3 tasks**.
 
 ---
 
-# **Lab 3 – Part 1: Wazuh All‑In‑One Installation**
+#  Lab 3 – Part 1: Wazuh All-In-One Installation
 
-## **Overview**
-Part 1 of Lab 3 focuses on installing the Wazuh All‑In‑One SIEM stack on an Ubuntu Server VM.  
-This includes:
+## Objective
+Install the **Wazuh All-In-One SIEM stack** on an Ubuntu Server VM and troubleshoot common installation issues.
 
-- Downloading the Wazuh installer  
-- Troubleshooting shell and command execution issues  
-- Running the installer with the correct flags  
-- Completing the installation of:
-  - Wazuh Indexer  
-  - Wazuh Manager  
-  - Filebeat  
-  - Wazuh Dashboard  
+This deployment includes:
+
+- Wazuh Indexer
+- Wazuh Manager
+- Filebeat
+- Wazuh Dashboard
 
 ---
 
-## **Issues Encountered & How I Resolved Them**
+#  Lab Environment
 
-### **1. Shell Was Not Executing Commands**
-Initially, the terminal kept re-running a script instead of executing new commands.  
-This prevented `curl`, `ls`, and other commands from running.
-
-**The commands:**
-
-```bash
-ps -f
-```
-
-This confirmed no script was running anymore and the shell was behaving normally again.
-
-**Resolution:**  
-Once the shell returned to a normal prompt, commands executed correctly.
+| Component | Details |
+|------------|----------|
+| Hypervisor | VirtualBox |
+| OS | Ubuntu Server |
+| SIEM Version | Wazuh 4.7 |
+| Deployment Mode | All-In-One |
 
 ---
 
-### **2. Incorrect Curl Flag (`-0` instead of `-O`)**
-My first download attempt used:
+#  Step 1 – Download Wazuh Installer
 
-```bash
-curl -v -0 https://packages.wazuh.com/4.7/wazuh-install.sh
-```
-
-The issue was the flag:
-
-- `-0` (zero)  wrong 
-- `-O` (capital O) correct 
-
-**Correct command:**
+Download the official installer script:
 
 ```bash
 curl -v -O https://packages.wazuh.com/4.7/wazuh-install.sh
 ```
 
-This successfully downloaded the installer.
+###  Important
+The correct flag is:
+
+- `-O` → Saves file with original name  
+- `-0` (zero) → ❌ Incorrect flag  
+
+Using the wrong flag prevents the script from downloading properly.
 
 ---
 
-### **3. Installer Only Displayed Help Menu**
-Running the script without flags:
+#  Step 2 – Run Installer (All-In-One Mode)
+
+By default, running the script without flags only shows the help menu:
 
 ```bash
 sudo bash wazuh-install.sh
 ```
 
-showed only the help menu.  
-Newer Wazuh versions require explicit mode selection.
+Newer versions of Wazuh require explicitly defining the installation mode.
 
-**Fix:**
+### ✅ Correct Command:
 
 ```bash
 sudo bash wazuh-install.sh -a
 ```
 
-This selects **All‑In‑One** mode.
+Flag explanation:
+
+- `-a` → All-In-One installation
 
 ---
 
-### **4. Ubuntu Version Not in Recommended List**
-The installer stopped with:
+#  Issue: Ubuntu Version Compatibility Error
+
+The installer returned:
 
 ```
 ERROR: The current system does not match the recommended list.
 Use -i|--ignore-check to skip this check.
 ```
 
-Because my VM uses a newer Ubuntu version, I needed to bypass the check.
+This occurred because the VM was running a newer Ubuntu version not yet listed as officially recommended.
 
-**Fix:**
+### Resolution
 
-```bash
-sudo bash wazuh-install.sh -a -i
-```
-
-This allowed the installation to proceed normally.
-
----
-
-## **Final Working Command**
+Bypass the compatibility check:
 
 ```bash
 sudo bash wazuh-install.sh -a -i
 ```
 
-This triggered the full installation of:
+Flag explanation:
 
-- Wazuh Indexer  
-- Wazuh Manager  
-- Filebeat  
-- Wazuh Dashboard  
+- `-i` → Ignore OS compatibility check
 
 ---
 
-## **Successful Installation Output**
-The installer completed all components successfully:
+#  Final Working Installation Command
 
-- Indexer cluster initialized  
-- Wazuh Manager installed and started  
-- Filebeat installed and started  
-- Wazuh Dashboard installed and initialized  
+```bash
+sudo bash wazuh-install.sh -a -i
+```
 
-The script then displayed the final summary, including dashboard access details:
+This successfully deployed:
+
+- Wazuh Indexer
+- Wazuh Manager
+- Filebeat
+- Wazuh Dashboard
+
+---
+
+# Successful Installation Output
+
+After completion, the installer displayed:
 
 ```
 You can access the web interface at:
@@ -522,16 +508,27 @@ https://<wazuh-dashboard-ip>:443
 User: admin
 Password: <generated-password>
 ```
+
+### ✅ Services Started Successfully
+
+- Indexer cluster initialized
+- Wazuh Manager running
+- Filebeat running
+- Wazuh Dashboard accessible
+
 ---
 
-## **Skills Learned**
-- Troubleshooting shell execution issues  
-- Correct use of curl flags  
-- Understanding installer modes and flags  
-- Bypassing compatibility checks safely  
-- Reading and interpreting installation logs   
+#  Skills Demonstrated
+
+- Linux troubleshooting
+- Process inspection using `ps`
+- Understanding CLI flags and script parameters
+- Debugging installer errors
+- Reading and interpreting deployment logs
+- Safe bypassing of compatibility checks
 
 ---
 
 Evidence  of part one :
+
 <img width="637" height="431" alt="image" src="https://github.com/user-attachments/assets/53ffbcc0-3389-4d40-84a2-e506820a992e" />
