@@ -415,7 +415,7 @@ This includes:
 Initially, the terminal kept re-running a script instead of executing new commands.  
 This prevented `curl`, `ls`, and other commands from running.
 
-**Diagnosis:**
+**The commands:**
 
 ```bash
 ps -f
@@ -437,8 +437,8 @@ curl -v -0 https://packages.wazuh.com/4.7/wazuh-install.sh
 
 The issue was the flag:
 
-- `-0` (zero) 
-- `-O` (capital O) 
+- `-0` (zero)  wrong 
+- `-O` (capital O) correct 
 
 **Correct command:**
 
@@ -529,8 +529,9 @@ Password: <generated-password>
 - Correct use of curl flags  
 - Understanding installer modes and flags  
 - Bypassing compatibility checks safely  
-- Reading and interpreting installation logs  
-- Documenting technical processes professionally  
+- Reading and interpreting installation logs   
 
 ---
 
+Evidence  of part one :
+<img width="637" height="431" alt="image" src="https://github.com/user-attachments/assets/53ffbcc0-3389-4d40-84a2-e506820a992e" />
