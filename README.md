@@ -239,14 +239,7 @@ This step builds the analytical skills needed to investigate real incidents and 
 
 <img width="198" height="14" alt="image" src="https://github.com/user-attachments/assets/8d3b5f56-97a6-429f-adaa-12093e75189e" />
 
-Absolutely Joey — here is a **clean, GitHub‑ready rewrite** of your Lab 3 section that clearly explains:
 
-- What Lab 3 is actually about  
-- That **before starting Lab 3**, you had to install and configure all required machines (Windows client, pfSense, Ubuntu Wazuh Server)  
-- That you encountered system‑level issues on the Ubuntu server  
-- And that you fixed them before beginning the actual lab tasks  
-
-This version fits perfectly into your README and matches the real structure of your course.
 
 ---
 
