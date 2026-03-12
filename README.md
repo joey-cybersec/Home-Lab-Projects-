@@ -554,7 +554,7 @@ Evidence  of part one :
 
 ---
 
-# **Lab 1 — Message Confidentiality & Authentication Using GPG**
+# **Lab 4 — Message Confidentiality & Authentication Using GPG**
 
 ## **Step 1: Generate GPG Key Pairs (Alice & Bob)**
 
@@ -603,6 +603,7 @@ This produced four key files:
 - `bob_pubkey.asc`  
 - `bob_privatekey.asc`
 
+
 ### **Why it matters:**  
 Exported keys allow secure sharing of public keys and safe backup of private keys.  
 This is essential for:
@@ -615,6 +616,9 @@ This is essential for:
 - Exporting keys in ASCII‑armored format  
 - Managing key files in Linux  
 - Understanding how keys are stored and shared  
+
+Evidence:
+<img width="229" height="110" alt="image" src="https://github.com/user-attachments/assets/89619c1e-c166-4bf0-9b13-6708c26f7fc7" />
 
 ---
 
@@ -648,6 +652,8 @@ Even if the encrypted file is intercepted, it cannot be read.
 - Encrypting files with a recipient’s public key  
 - Decrypting files using a private key  
 - Understanding asymmetric confidentiality  
+
+Eivdence: <img width="311" height="145" alt="image" src="https://github.com/user-attachments/assets/d8dac33d-0dc0-4e41-a614-d44a2d9a156e" />
 
 ---
 
@@ -685,6 +691,8 @@ This mirrors real‑world digital signatures used in software distribution, secu
 - Signing files with a private key  
 - Verifying signatures with a public key  
 - Understanding message integrity and sender authenticity  
+
+Evidence : <img width="310" height="92" alt="image" src="https://github.com/user-attachments/assets/fe4158e5-4349-4e18-a684-c15603f0e699" />
 
 ---
 
