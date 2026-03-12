@@ -551,3 +551,150 @@ This triggered the full installation of:
 Evidence  of part one :
 
 <img width="637" height="431" alt="image" src="https://github.com/user-attachments/assets/53ffbcc0-3389-4d40-84a2-e506820a992e" />
+
+---
+
+# **Lab 1 — Message Confidentiality & Authentication Using GPG**
+
+## **Step 1: Generate GPG Key Pairs (Alice & Bob)**
+
+### **What I did:**  
+I created two separate asymmetric key pairs using the `gpg --gen-key` command:
+
+- **Alice** → `alice@example.com`  
+- **Bob** → `bob@example.com`  
+
+Each key pair was created with a unique passphrase to allow encryption, decryption, and signing.
+
+### **Why it matters:**  
+Public‑key cryptography is the foundation of secure communication.  
+It ensures:
+
+- Only the intended recipient can read encrypted data  
+- Only the legitimate sender can sign/authenticate messages  
+- Messages cannot be modified without detection  
+
+This mirrors how real‑world secure email, SSH, and VPN authentication work.
+
+### **Skills learned:**  
+- Generating asymmetric key pairs  
+- Understanding public vs private key roles  
+- Managing cryptographic identities in Linux  
+
+---
+
+## **Step 2: Export Public & Private Keys**
+
+### **What I did:**  
+I exported both public and private keys for Alice and Bob into ASCII‑armored `.asc` files using:
+
+```bash
+gpg --armor --export alice@example.com > alice_pubkey.asc
+gpg --armor --export-secret-keys alice@example.com > alice_privatekey.asc
+
+gpg --armor --export bob@example.com > bob_pubkey.asc
+gpg --armor --export-secret-keys bob@example.com > bob_privatekey.asc
+```
+
+This produced four key files:
+
+- `alice_pubkey.asc`  
+- `alice_privatekey.asc`  
+- `bob_pubkey.asc`  
+- `bob_privatekey.asc`
+
+### **Why it matters:**  
+Exported keys allow secure sharing of public keys and safe backup of private keys.  
+This is essential for:
+
+- Secure messaging  
+- Identity verification  
+- Key distribution in real networks  
+
+### **Skills learned:**  
+- Exporting keys in ASCII‑armored format  
+- Managing key files in Linux  
+- Understanding how keys are stored and shared  
+
+---
+
+## **Step 3: Message Confidentiality (Encrypt → Decrypt)**
+
+### **What I did:**  
+I created a plaintext file:
+
+```bash
+nano mytext
+```
+
+Then encrypted it using **Alice’s public key**:
+
+```bash
+gpg --output mytext.gpg --encrypt --recipient alice@example.com mytext
+```
+
+Alice decrypted it using her **private key**:
+
+```bash
+gpg --output decrypted_mytext --decrypt mytext.gpg
+```
+
+### **Why it matters:**  
+This demonstrates **confidentiality** — only the intended recipient (Alice) can decrypt the message because only she has the matching private key.
+
+Even if the encrypted file is intercepted, it cannot be read.
+
+### **Skills learned:**  
+- Encrypting files with a recipient’s public key  
+- Decrypting files using a private key  
+- Understanding asymmetric confidentiality  
+
+---
+
+## **Step 4: Message Authentication (Sign → Verify)**
+
+### **What I did:**  
+Bob signed the message using his **private key**:
+
+```bash
+gpg --local-user bob@example.com --sign mytext
+```
+
+Alice verified the signature using Bob’s **public key**:
+
+```bash
+gpg --verify mytext.gpg
+```
+
+Alice also decrypted the signed message:
+
+```bash
+gpg --output decrypted_signed_text --decrypt mytext.gpg
+```
+
+### **Why it matters:**  
+This demonstrates **authentication and integrity**:
+
+- Only Bob can create a valid signature (private key)  
+- Anyone with Bob’s public key can verify it  
+- If the message is modified, verification fails  
+
+This mirrors real‑world digital signatures used in software distribution, secure email, and certificates.
+
+### **Skills learned:**  
+- Signing files with a private key  
+- Verifying signatures with a public key  
+- Understanding message integrity and sender authenticity  
+
+---
+
+## **Overall Skills Gained**
+
+- Public‑key cryptography fundamentals  
+- Key generation, export, and management  
+- File encryption and decryption  
+- Digital signatures and verification  
+- Secure communication workflow  
+- Linux command‑line cryptography  
+
+---
