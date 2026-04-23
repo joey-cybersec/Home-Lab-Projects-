@@ -706,63 +706,188 @@ Evidence : <img width="310" height="92" alt="image" src="https://github.com/user
 - Linux command‑line cryptography  
 
 ---
-##**iptables Firewall Configuration**
-This lab demonstrates how to configure a Linux firewall using iptables to control inbound and outbound traffic, block malicious hosts, and allow essential services such as DNS and HTTP.
-**Part 1.1.1 — Control Traffic Using Default Policies**
-1. Flush all existing rules
-bash
-sudo iptables -F
-sudo iptables -X
-sudo iptables -Z
-2. Set default policies to DROP
-bash
+
+## **iptables Firewall Configuration (Parts 1.1.1 – 1.1.3)**
+
+---
+
+##  Overview
+
+This lab demonstrates how to configure a Linux firewall using **iptables** to:
+
+* Enforce strict default-deny policies
+* Allow only required traffic
+* Block unauthorized communication
+* Enable essential services (DNS, HTTP)
+
+---
+
+##  Part 1.1.1 — Default Policy Configuration
+
+### Step 1 — Reset Firewall Rules
+
+```bash
+sudo iptables -F     # Flush rules
+sudo iptables -X     # Delete custom chains
+sudo iptables -Z     # Reset counters
+```
+
+### Step 2 — Apply Default DROP Policies
+
+```bash
 sudo iptables -P INPUT DROP
 sudo iptables -P OUTPUT DROP
 sudo iptables -P FORWARD DROP
-3. Test connectivity (should fail)
-bash
+```
+
+### Step 3 — Verify Blocking
+
+```bash
 ping google.com
-4. Allow outbound traffic
-bash
+```
+
+Expected result:  Fail (all traffic blocked)
+
+### Step 4 — Allow Outbound Traffic
+
+```bash
 sudo iptables -A OUTPUT -j ACCEPT
-5. Allow established inbound connections
-bash
+```
+
+### Step 5 — Allow Established Connections
+
+```bash
 sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-6. Test again (should succeed)
-bash
+```
+
+### Step 6 — Re-test Connectivity
+
+```bash
 ping google.com
-**Part 1.1.2 — Block Malicious Hosts**
-1. Delete all outbound rules
-bash
+```
+
+Expected result: ✅ Success
+
+---
+
+##  Part 1.1.2 — Block Outbound Traffic
+
+### Step 1 — Remove OUTPUT Rules
+
+```bash
 sudo iptables -F OUTPUT
-2. Set outbound policy to DROP
-bash
+```
+
+### Step 2 — Enforce OUTPUT DROP
+
+```bash
 sudo iptables -P OUTPUT DROP
-3. Test (both should fail)
-Ping host PC:
-bash
+```
+
+### Step 3 — Test Restrictions
+
+Ping local host:
+
+```bash
 ping 192.168.51.6
-Test HTTP:
-bash
+```
+
+Test web access:
+
+```bash
 curl http://example.com
- Part 1.1.3 — Allow Some Outbound Traffic
-1. Allow outbound traffic to host PC
-bash
+```
+
+Expected result: ❌ Both fail
+
+---
+
+##  Part 1.1.3 — Allow Required Services
+
+### Step 1 — Allow Specific Host Access
+
+```bash
 sudo iptables -A OUTPUT -d 192.168.51.6 -j ACCEPT
+```
+
 Test:
-bash
+
+```bash
 ping 192.168.51.6
-2. Allow DNS (UDP port 53)
-bash
+```
+
+Expected result:  Success
+
+---
+
+### Step 2 — Enable DNS (Port 53 UDP)
+
+```bash
 sudo iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
-3. Allow HTTP (TCP port 80)
-bash
+```
+
+---
+
+### Step 3 — Enable HTTP (Port 80 TCP)
+
+```bash
 sudo iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
-4. Test HTTP
-bash
+```
+
+---
+
+### Step 4 — Test Web Access
+
+```bash
 curl http://example.com
- **Why DNS Must Be Allowed**
-DNS is required because HTTP uses domain names, not IP addresses.
-Before connecting to a website, the system must query a DNS server on port 53 to translate the domain name into an IP address.
-Without DNS, HTTP requests cannot begin.
+```
+
+Expected result:  Success
+
+---
+
+##  Key Concept — Why DNS is Required
+
+DNS (Domain Name System) translates human-readable domain names into IP addresses.
+
+Example:
+
+```
+example.com → 93.184.216.34
+```
+
+Without DNS:
+
+* The system cannot resolve domain names
+* HTTP/HTTPS connections fail before starting
+
+---
+
+## ✅ Results Summary
+
+| Test                 | Before Rules | After Rules      |
+| -------------------- | ------------ | ---------------- |
+| Ping external        | ❌            | ✅                |
+| Ping local host      | ❌            | ✅ (allowed only) |
+| HTTP access          | ❌            | ✅                |
+| Unauthorized traffic | ❌            | ❌                |
+
+---
+
+
+
+---
+
+## 🎯 Conclusion
+
+The firewall was successfully configured using a **default-deny approach**, ensuring:
+
+* Only trusted traffic is permitted
+* Attack surface is minimized
+* Network behaviour is controlled and predictable
+
+---
+
+
+---
 
