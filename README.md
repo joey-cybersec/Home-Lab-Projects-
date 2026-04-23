@@ -768,6 +768,11 @@ ping google.com
 
 Expected result: ✅ Success
 
+Part 1 Evidence:
+<img width="367" height="266" alt="image" src="https://github.com/user-attachments/assets/21814586-fa9b-495b-b323-cdfdfed56ff3" />
+
+<img width="325" height="205" alt="image" src="https://github.com/user-attachments/assets/0b98da3e-c6fb-42bf-85c8-ad203ec98419" />
+
 ---
 
 ##  Part 2 — Block Outbound Traffic
@@ -801,6 +806,11 @@ curl http://example.com
 Expected result: ❌ Both fail
 
 ---
+Part 2 Evidence:
+<img width="321" height="62" alt="image" src="https://github.com/user-attachments/assets/2b1af2a2-d9fe-44bd-b05f-07371c566828" />
+<img width="234" height="42" alt="image" src="https://github.com/user-attachments/assets/d8219a2f-5aa0-4eed-92f8-8b65f344549d" />
+
+
 
 ##  Part 3 — Allow Required Services
 
@@ -862,19 +872,11 @@ Without DNS:
 * HTTP/HTTPS connections fail before starting
 
 ---
-
-##  Results Summary
-
-| Test                 | Before Rules | After Rules      |
-| -------------------- | ------------ | ---------------- |
-| Ping external        | ❌            | ✅                |
-| Ping local host      | ❌            | ✅ (allowed only) |
-| HTTP access          | ❌            | ✅                |
-| Unauthorized traffic | ❌            | ❌                |
+Part 3 Evidence:
+<img width="260" height="79" alt="image" src="https://github.com/user-attachments/assets/ff099e77-2421-4c1c-ac9a-e84dced18869" />
+<img width="321" height="215" alt="image" src="https://github.com/user-attachments/assets/5b95cc9c-d9c2-4599-accf-ea6f44d5c7e9" />
 
 ---
-
-
 
 ---
 
