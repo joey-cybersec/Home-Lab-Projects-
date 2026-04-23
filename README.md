@@ -722,7 +722,7 @@ This lab demonstrates how to configure a Linux firewall using **iptables** to:
 
 ---
 
-##  Part 1.1.1 — Default Policy Configuration
+##  Part 1 — Default Policy Configuration
 
 ### Step 1 — Reset Firewall Rules
 
@@ -770,7 +770,7 @@ Expected result: ✅ Success
 
 ---
 
-##  Part 1.1.2 — Block Outbound Traffic
+##  Part 2 — Block Outbound Traffic
 
 ### Step 1 — Remove OUTPUT Rules
 
@@ -802,7 +802,7 @@ Expected result: ❌ Both fail
 
 ---
 
-##  Part 1.1.3 — Allow Required Services
+##  Part 3 — Allow Required Services
 
 ### Step 1 — Allow Specific Host Access
 
@@ -863,7 +863,7 @@ Without DNS:
 
 ---
 
-## ✅ Results Summary
+##  Results Summary
 
 | Test                 | Before Rules | After Rules      |
 | -------------------- | ------------ | ---------------- |
@@ -878,7 +878,7 @@ Without DNS:
 
 ---
 
-## 🎯 Conclusion
+## Conclusion
 
 The firewall was successfully configured using a **default-deny approach**, ensuring:
 
