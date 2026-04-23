@@ -706,3 +706,63 @@ Evidence : <img width="310" height="92" alt="image" src="https://github.com/user
 - Linux command‑line cryptography  
 
 ---
+##**iptables Firewall Configuration**
+This lab demonstrates how to configure a Linux firewall using iptables to control inbound and outbound traffic, block malicious hosts, and allow essential services such as DNS and HTTP.
+**Part 1.1.1 — Control Traffic Using Default Policies**
+1. Flush all existing rules
+bash
+sudo iptables -F
+sudo iptables -X
+sudo iptables -Z
+2. Set default policies to DROP
+bash
+sudo iptables -P INPUT DROP
+sudo iptables -P OUTPUT DROP
+sudo iptables -P FORWARD DROP
+3. Test connectivity (should fail)
+bash
+ping google.com
+4. Allow outbound traffic
+bash
+sudo iptables -A OUTPUT -j ACCEPT
+5. Allow established inbound connections
+bash
+sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+6. Test again (should succeed)
+bash
+ping google.com
+**Part 1.1.2 — Block Malicious Hosts**
+1. Delete all outbound rules
+bash
+sudo iptables -F OUTPUT
+2. Set outbound policy to DROP
+bash
+sudo iptables -P OUTPUT DROP
+3. Test (both should fail)
+Ping host PC:
+bash
+ping 192.168.51.6
+Test HTTP:
+bash
+curl http://example.com
+ Part 1.1.3 — Allow Some Outbound Traffic
+1. Allow outbound traffic to host PC
+bash
+sudo iptables -A OUTPUT -d 192.168.51.6 -j ACCEPT
+Test:
+bash
+ping 192.168.51.6
+2. Allow DNS (UDP port 53)
+bash
+sudo iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
+3. Allow HTTP (TCP port 80)
+bash
+sudo iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
+4. Test HTTP
+bash
+curl http://example.com
+ **Why DNS Must Be Allowed**
+DNS is required because HTTP uses domain names, not IP addresses.
+Before connecting to a website, the system must query a DNS server on port 53 to translate the domain name into an IP address.
+Without DNS, HTTP requests cannot begin.
+
