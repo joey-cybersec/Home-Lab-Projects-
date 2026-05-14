@@ -893,3 +893,5 @@ The firewall was successfully configured using a **default-deny approach**, ensu
 
 ---
 
+
+Incident Response Simulation Lab
