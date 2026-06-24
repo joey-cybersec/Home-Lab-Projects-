@@ -1,3 +1,5 @@
+Lab 2: Windows Logging & Attack Detection (Blue Team)
+
 Step 1: Set Up the Windows Victim Machine
 What I did:
 Created a Windows 10 virtual machine to act as the victim system. This machine represents a typical corporate workstation in an enterprise environment.
