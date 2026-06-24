@@ -1,1 +1,93 @@
+Fixing Sudo, Root Access & System Recovery Issues Before Starting the Lab
+Overview
+Before beginning the official tasks in Lab 3, I first needed to install and configure all required virtual machines for the SIEM environment:
+
+pfSense Firewall
+Windows Client Machine
+Ubuntu Wazuh Server (SIEM Server)
+These machines form the core of the lab environment.
+However, during the setup of the Ubuntu Wazuh Server, I encountered several system‑level issues that prevented me from starting Lab 3 properly.
+
+This section documents the troubleshooting and repair process I completed before beginning the actual lab instructions.
+
+Problem Summary
+When preparing the Ubuntu server for Wazuh installation, the following issues were discovered:
+
+sudo was not installed
+su - failed with Authentication failure
+The root account had no password
+The user account (joey) was not in the sudo group
+The system could not install or modify packages
+The Wazuh installer could not run
+These issues made it impossible to begin Lab 3’s SIEM configuration steps.
+
+Step 1 — Boot Into Recovery Mode
+To regain administrative access, the VM was rebooted into Ubuntu’s Recovery Mode.
+
+Restart the VM
+
+Open the GRUB menu (Shift/Esc during boot)
+
+Select:
+
+Advanced options for Ubuntu
+Choose the entry ending with:
+
+(recovery mode)
+From the Recovery Menu, select:
+
+root – Drop to root shell prompt
+This provides root access without requiring a password.
+
+Step 2 — Remount Filesystem as Read/Write
+Recovery mode mounts the system read‑only. To make changes:
+
+mount -o remount,rw /
+Step 3 — Set a Root Password
+The root account had no password, which is why su - failed earlier.
+
+passwd
+A new root password was created successfully.
+
+Step 4 — Install sudo
+The system was missing the sudo package entirely. It was installed using the root shell:
+
+apt update
+apt install sudo -y
+Step 5 — Add User “joey” to the sudo Group
+To allow the normal user to run administrative commands:
+
+usermod -aG sudo joey
+Step 6 — Reset Joey’s User Password
+After rebooting, sudo still failed because the user password was incorrect.
+The password was reset from the root shell:
+
+su -
+passwd joey
+Password updated successfully.
+
+Step 7 — Verify sudo Access
+Logged back in as joey and tested:
+
+sudo ls
+The password prompt worked, confirming:
+
+sudo is installed
+user is in the sudo group
+authentication works correctly
+The system is now fully repaired and ready for the actual Lab 3 tasks.
+
+Skills Learned
+Using Ubuntu Recovery Mode for system repair
+Resetting root and user passwords
+Installing missing system packages
+Managing sudo permissions
+Understanding Linux boot and recovery workflows
+Preparing a server for SIEM deployment
+what you did
+the exact commands you wrote
+what went wrong
+why it went wrong
+how you fixed it
+what you learned from each issue
 
