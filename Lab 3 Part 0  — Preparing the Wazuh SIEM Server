@@ -1,3 +1,5 @@
+Lab 3 Part 0  — Preparing the Wazuh SIEM Server
+
 Fixing Sudo, Root Access & System Recovery Issues Before Starting the Lab
 Overview
 Before beginning the official tasks in Lab 3, I first needed to install and configure all required virtual machines for the SIEM environment:
