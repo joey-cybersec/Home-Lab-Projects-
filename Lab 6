@@ -1,0 +1,71 @@
+Nessus Essentials & Nmap Deep Dive
+Vulnerability Assessment Workflow Documentation
+This repository contains all work completed for ITECH2507 Lab 3, including Nessus Essentials scanning, Nmap NSE script usage, network discovery, troubleshooting, and the final Vulnerability Assessment Report. The following summary explains the steps I completed and where each screenshot should be plac
+Overview of Work Completed
+This lab involved performing a vulnerability assessment on a Windows Server VM using Nessus Essentials and Nmap. I configured a credentialled Nessus scan, attempted Windows authentication, ran multiple Nmap NSE scripts, documented the results, and produced a full Vulnerability Assessment Report using the provided template.
+
+All scanning, configuration, analysis, and reporting were completed manually. AI assistance was used only to help clarify task requirements.
+
+Nessus Essentials Work
+Basic Network Scan Configuration
+I created a Basic Network Scan targeting 172.20.10.5 and attempted to configure Windows credentials for an authenticated scan.
+
+Insert screenshot here:  
+
+
+Credential Setup
+I added the Administrator username and password, enabled Remote Registry, and applied recommended credential settings.
+
+Insert screenshot here:  
+
+
+Scan Execution and Results
+The scan completed successfully but Windows rejected the credentials, resulting in an unauthenticated scan. Nessus reported 17 informational findings.
+
+Insert screenshot here:  
+
+
+Vulnerability List
+The findings included SMB issues, OS fingerprinting, MSRPC disclosure, patch assessment failure, and credential failure.
+
+Insert screenshot here:  
+
+
+Nmap Work
+I ran all required NSE scripts for Task 3.
+
+Vulnerability Script
+Code
+sudo nmap -sV -O --script vuln 172.20.10.5 -oN nmap-vuln.txt
+Authentication Script
+Code
+sudo nmap -sV -O --script auth 172.20.10.5 -oN nmap-auth.txt
+SMB Security Mode
+Code
+sudo nmap --script smb-security-mode -p445 172.20.10.5 -oN nmap-smb.txt
+Network Topology Scan
+Code
+sudo nmap -sn 172.20.10.0/24 -oN nmap-topology.txt
+Insert screenshot here:  
+
+
+Vulnerability Assessment Report
+I completed a full professional report using the provided template, including:
+
+Executive Summary
+
+Scope and Methodology
+
+Risk Rating Methodology
+
+Findings Summary
+
+Detailed Findings
+
+Recommendations
+
+Conclusion
+
+Appendix A (screenshots and scan evidence)
+
+Insert screenshot here:  
